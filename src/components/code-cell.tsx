@@ -7,11 +7,15 @@ import Resizable from './resizable';
 const CodeCell = () => {
   const [input, setInput] = useState('');
   const [code, setCode] = useState('');
+  const [err, setError] = useState('');
 
   useEffect(() => {
     const timer = setTimeout(async () => {
       const output = await bundle(input);
-      setCode(output);
+      console.log('Ivan_OOUTPUT', output);
+
+      setCode(output.code);
+      setError(output.err);
     }, 750);
 
     return () => {
@@ -25,7 +29,7 @@ const CodeCell = () => {
         <Resizable direction='horizontal'>
           <CodeEditor initialValue='' onChange={(value) => setInput(value)} />
         </Resizable>
-        <Preview code={code} />
+        <Preview code={code} err={err} />
       </div>
     </Resizable>
   );
