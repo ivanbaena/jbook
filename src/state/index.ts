@@ -1,1 +1,2 @@
-console.log('reducer');
+export * from './store';
+export * from './reducers';
